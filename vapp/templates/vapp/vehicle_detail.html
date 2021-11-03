@@ -1,0 +1,135 @@
+<html>
+<head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+
+</script>
+<style>
+    .wrapper {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: 240px 150px;
+  grid-template-areas:
+    "a a b"
+    "a a c";
+}
+
+.wrapperx {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: 120px;
+}
+.item4{
+    border: 3px solid red;
+    border-collapse: separate;
+    border-radius: 15px;
+    background-color: thistle;
+    font-style: bold;
+    font-family: monospace;
+    padding-top: 10px ;
+}
+.item5{
+    border: 3px solid green;
+    border-collapse: separate;
+    border-radius: 15px;
+    background-color: thistle;
+    font-style: bold;
+    font-family: monospace;
+    padding-top: 10px ;
+}
+.item6{
+    border: 3px solid purple;
+    border-collapse: separate;
+    border-radius: 15px;
+    background-color: thistle;
+    font-style: bold;
+    font-family: monospace;
+    padding-top: 10px ;
+}
+.item1 {
+  grid-area: a;
+ 
+}
+.item2 {
+  grid-area: b;
+  border: 3px solid blue;
+  border-collapse: separate;
+    border-radius: 15px;
+    background-color: thistle;
+    font-style: bold;
+    font-family: monospace;
+    padding-top: 80px ;
+}
+.item3{
+    grid-area: c;
+    border: 3px solid yellow;
+    border-collapse: separate;
+    border-radius: 15px;
+    background-color: thistle;
+    font-style: bold;
+    font-family: monospace;
+    padding-top: 10px ;
+}
+
+</style>
+</head>
+<body id="id6" style="background-color:black;" >
+    <div class="container" style="margin-bottom: 20px;margin-left:5px ;margin-top:15px;">
+        <pr  style="width:20%;color:tomato; font-style: bold; padding-left: 8px; font-size: 15px; text-decoration-color: chartreuse;" >{{ object.vehiclename }} INFORMATION</pre>
+      <button type="button"  class="btn btn-info"  onclick="myfunc1()" style="width:20%;">IMG1</button>
+      <button type="button"  class="btn btn-info" onclick="myfunc3()"  style="width:20%;">IMG2</button>    
+       <button type="button"  class="btn btn-outline-success" onclick="on()"  style="width:20%;">ON</button>
+       <button type="button"  class="btn btn-outline-warning" onclick="off()"  style="width:20%;">OFF</button>
+    </div>
+    <div class="wrapper">
+        <div class="item1">
+    <div >
+        <img src="{{ object.image1.url }}" id="demo" alt="somethingwentwrong" width="100%" height="100%" ></div></div>
+        <div class="item2" style="text-align: center;">
+            <p >SPEED</p>
+            <p>{{ object.speed }}(m/s)</p>
+        </div>
+        <div class="item3" style="text-align: center;">
+            <p>AVERAGE SPEED</p>
+            <p>{{ object.speed }}(m/s)</p>
+        </div>
+     </div>
+    <div class="wrapperx" >
+        <div class="item4" style="text-align: center;"><p>ENGINESTATS</p>
+            <p>{{ object.enginestats }}(cc)</p>
+        </div>
+
+        <div class="item5" style="text-align: center;"><p>FUELLEVEL</p>
+            <p>{{ object.fuellevel }}(litre)</p></div>
+        <div class="item6" style="text-align: center;"><p>TEMPERATURE</p>
+            <p>{{ object.Temperature }}(C)</p></div>
+    </div> 
+
+
+
+  <div style="margin-top: 15px ;">
+    <button type="button" class="btn btn-primary"><a href="{% url 'home' %}" style="color: rgb(247, 216, 216) ; text-decoration: none;">HOME</a></button>
+    <button type="button" class="btn btn-primary"><a href="{% url 'change' object.pk %}" style="color: rgb(247, 216, 216) ; text-decoration: none;">UPDATE</a></button>
+    <button type="button" class="btn btn-primary"><a href="{% url 'delete' object.pk %}" style="color: rgb(247, 216, 216) ; text-decoration: none;">DELETE</a></button>
+</div>
+<script>
+    function myfunc1(){
+        document.getElementById("demo").src="{{ object.image1.url }}";  
+    }
+    function myfunc3(){
+        document.getElementById("demo").src="{{object.image2.url}} ";
+    }
+    function on(){
+        document.getElementById("id6").style.background="black";
+    }
+    function off(){
+        document.getElementById("id6").style.background="white";
+    }
+</script>
+</body>
+</html>
